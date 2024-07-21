@@ -18,6 +18,10 @@ export function Router() {
           element: <LandingPage />,
         },
         {
+          path: '/home',
+          element: <LandingPage />,
+        },
+        {
           path: '/store',
           element: <StorePage />,
         },

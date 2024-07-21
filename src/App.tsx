@@ -1,11 +1,14 @@
 import {Outlet} from 'react-router-dom';
-import {NavBar} from './components/NavBar/NavBar';
+import {Header} from './components/Header/Header';
+import {AppContextProvider} from './contexts/AppContext/AppContextProvider';
 
 export function App() {
   return (
-    <>
-      <NavBar />
-      <Outlet />
-    </>
+    <div className="h-screen w-screen">
+      <AppContextProvider>
+        <Header />
+        <Outlet />
+      </AppContextProvider>
+    </div>
   );
 }
