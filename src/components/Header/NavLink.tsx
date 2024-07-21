@@ -1,5 +1,4 @@
 import {PropsWithChildren} from 'react';
-import {Link} from 'react-router-dom';
 
 export function NavLink({children, ...props}: PropsWithChildren) {
   return (
