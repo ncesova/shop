@@ -2,7 +2,7 @@ import {useItems} from '../../App';
 import Select from 'react-select';
 import {StoreItem} from './StoreItem';
 import {Item, Items} from '../../data/types';
-import {useEffect, useReducer, useState} from 'react';
+import {useEffect, useMemo, useReducer, useState} from 'react';
 
 type Option = {
   value: string;
@@ -10,64 +10,79 @@ type Option = {
 };
 
 export function StorePage(this: any) {
-  const [, forceUpdate] = useReducer((x) => x + 1, 0);
-  const [items, setItems] = useState<Items | null>(null);
-
+  const [items, setItems] = useState<Items>([]);
   const [selectedOption, setSelectedOption] = useState<Option>({
     value: 'category',
     label: 'Category',
   });
 
-  useEffect(() => {
-    console.log('API fetch');
+  function fetchItems() {
     fetch('https://fakestoreapi.com/products', {mode: 'cors'})
       .then((res) => res.json())
       .then((json) => setItems(json as Items));
-  }, []);
-
-  function compareBy(thing: string, a: Item, b: Item): number {
-    if (thing === 'category') {
-      return b.category.localeCompare(a.category);
-    } else if (thing === 'title') {
-      return a.title.localeCompare(b.title);
-    } else if (thing === 'price') {
-      return a.price - b.price;
-    } else {
-      return 0;
-    }
   }
 
   useEffect(() => {
-    console.log('sorted');
-    const newItems = items;
-    newItems?.sort((a: Item, b: Item) => {
-      return compareBy(selectedOption.value, a, b);
-    });
-    setItems(newItems);
-    forceUpdate();
-  }, [selectedOption]);
+    fetchItems();
+  }, []);
+
+  const sortedItems = useMemo(() => {
+    let result = items;
+
+    if (selectedOption.value === 'category') {
+      result = [...items].sort((a: Item, b: Item) => {
+        return b.category.localeCompare(a.category);
+      });
+    } else if (selectedOption.value === 'title') {
+      result = [...items].sort((a: Item, b: Item) => {
+        return a.title.localeCompare(b.title);
+      });
+    } else if (selectedOption.value === 'priceLow') {
+      result = [...items].sort((a: Item, b: Item) => {
+        return a.price - b.price;
+      });
+    } else if (selectedOption.value === 'priceHigh') {
+      result = [...items].sort((a: Item, b: Item) => {
+        return b.price - a.price;
+      });
+    }
+    return result;
+  }, [items, selectedOption]);
+
+  useEffect(() => {
+    fetchItems();
+  }, []);
 
   const options = [
     {value: 'category', label: 'Category'},
     {value: 'title', label: 'Name'},
-    {value: 'price', label: 'Price'},
+    {value: 'priceLow', label: 'Price ⬇️'},
+    {value: 'priceHigh', label: 'Price ⬆️'},
   ];
 
   return (
-    <div className="">
+    <div className="StorePage">
       <div className="flex w-full items-center gap-4 px-8 py-2">
         <span>Sort by</span>
         <Select
           defaultValue={selectedOption}
-          onChange={setSelectedOption}
+          onChange={(item) => setSelectedOption(item as Option)}
           options={options}
+          theme={(theme) => ({
+            ...theme,
+            borderRadius: 8,
+            colors: {
+              ...theme.colors,
+              primary25: '#f1f5f9',
+              primary: '#94a3b8',
+            },
+          })}
         />
       </div>
       <div className="grid grid-cols-1 gap-4 px-8 md:grid-cols-2 xl:grid-cols-3">
-        {items &&
-          items.map((item) => {
-            return <StoreItem key={item.id} item={item} />;
-          })}
+        {sortedItems.map((item) => {
+          return <StoreItem key={item.id} item={item} />;
+        })}
       </div>
     </div>
   );

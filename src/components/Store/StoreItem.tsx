@@ -28,14 +28,16 @@ export function StoreItem({item}: StoreItemProps) {
           <img src={img} alt="" className="h-auto max-w-20" />
         </div>
       </Link>
-      <div className="relative flex w-full flex-col p-2 pb-14">
-        <div className="flex-1 font-heading text-base font-bold">
-          {item.title}
-        </div>
-        <div className="font-body">{item.price}$</div>
+      <div className="relative flex w-full flex-col p-2 pb-12">
         <div className="font-body font-light text-gray-500">
           {item.category}
         </div>
+        <div className="flex-1 font-heading text-base font-bold">
+          {item.title}
+        </div>
+        <div className="font-body text-lg">Price: {item.price}$</div>
+
+        <div className="font-body text-sm">Rating: {item.rating.rate}/5</div>
         <AddToCartButton item={item} />
       </div>
     </div>

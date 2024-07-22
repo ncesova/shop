@@ -1,24 +1,79 @@
 import {useOutletContext} from 'react-router-dom';
 import {useItems} from '../../App';
-import {Item, Items} from '../../data/types';
+import {CartItem, Item, Items} from '../../data/types';
 
 export function AddToCartButton({item}: {item: Item}) {
   const {cart, setCart} = useItems();
+
+  function isNotAdded() {
+    return cart.filter((thing) => thing.id === item.id).length === 0;
+  }
+
+  function addQuantity() {
+    const indexOfItem = cart.findIndex((thing) => {
+      return thing.id === item.id;
+    });
+    const newCart = [...cart];
+    newCart[indexOfItem] = {
+      id: item.id,
+      quantity: newCart[indexOfItem].quantity + 1,
+    };
+    setCart(newCart);
+  }
+
+  function subtractQuantity() {
+    const indexOfItem = cart.findIndex((thing) => {
+      return thing.id === item.id;
+    });
+    const newCart = [...cart];
+    if (newCart[indexOfItem].quantity - 1 != 0) {
+      newCart[indexOfItem] = {
+        id: item.id,
+        quantity: newCart[indexOfItem].quantity - 1,
+      };
+    } else {
+      newCart.splice(indexOfItem, 1);
+    }
+
+    setCart(newCart);
+  }
+
+  function getQuantity() {
+    const indexOfItem = cart.findIndex((thing) => {
+      return thing.id === item.id;
+    });
+    return cart[indexOfItem].quantity;
+  }
+
   return (
-    <button
-      className="absolute bottom-0 w-full rounded-md bg-slate-200 p-2 font-body"
-      onClick={() => {
-        console.log('Button with Item: ', item.title);
-        let newCart: Items | null = null;
-        if (!cart) {
-          newCart = Array<Item>(item);
-        } else {
-          newCart = cart;
-          newCart.push(item);
-        }
-        setCart(newCart);
-      }}>
-      Buy
-    </button>
+    <>
+      {isNotAdded() ? (
+        <button
+          className="absolute bottom-0 h-10 w-full rounded-md bg-slate-200 p-2 font-body"
+          onClick={() => {
+            if (isNotAdded()) {
+              const newCart = [...cart];
+              newCart.push({id: item.id, quantity: 1} as CartItem);
+              setCart(newCart);
+            } else {
+              addQuantity;
+            }
+          }}>
+          Buy
+        </button>
+      ) : (
+        <div className="absolute bottom-0 grid h-10 w-full grid-cols-3 items-center rounded-md bg-slate-200 font-body">
+          <button className="font-body text-lg" onClick={subtractQuantity}>
+            -
+          </button>
+          <div className="flex items-center justify-center text-lg">
+            {getQuantity()}
+          </div>
+          <button className="font-body text-lg" onClick={addQuantity}>
+            +
+          </button>
+        </div>
+      )}
+    </>
   );
 }
