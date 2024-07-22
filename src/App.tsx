@@ -4,26 +4,17 @@ import {useEffect, useState} from 'react';
 import {Items} from './data/types';
 
 type AppContext = {
-  items: Items | null;
   cart: Items | null;
   setCart: React.Dispatch<React.SetStateAction<Items | null>>;
 };
 
 export function App() {
-  const [items, setItems] = useState<Items | null>(null);
   const [cart, setCart] = useState<Items | null>(null);
-
-  useEffect(() => {
-    console.log('API fetch');
-    fetch('https://fakestoreapi.com/products', {mode: 'cors'})
-      .then((res) => res.json())
-      .then((json) => setItems(json as Items));
-  }, []);
 
   return (
     <div className="w-screen">
       <Header />
-      <Outlet context={{items, cart, setCart} satisfies AppContext} />
+      <Outlet context={{cart, setCart} satisfies AppContext} />
     </div>
   );
 }
