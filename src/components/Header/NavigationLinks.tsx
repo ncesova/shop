@@ -3,8 +3,8 @@ import {NavLink} from './NavLink';
 
 export function NavigationLinks() {
   return (
-    <nav className="">
-      <ul className="font-heading flex h-16 w-screen items-center justify-around font-medium">
+    <nav className="mx-auto hidden md:block">
+      <ul className="font-heading flex h-16 w-full items-center gap-16 font-medium">
         <NavLink>
           <Link to={'/home'}>Home</Link>
         </NavLink>

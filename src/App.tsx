@@ -3,10 +3,15 @@ import {Header} from './components/Header/Header';
 import {useEffect, useState} from 'react';
 import {Items} from './data/types';
 
-type AppContext = {items: Items | null};
+type AppContext = {
+  items: Items | null;
+  cart: Items | null;
+  setCart: React.Dispatch<React.SetStateAction<Items | null>>;
+};
 
 export function App() {
   const [items, setItems] = useState<Items | null>(null);
+  const [cart, setCart] = useState<Items | null>(null);
 
   useEffect(() => {
     console.log('API fetch');
@@ -18,7 +23,7 @@ export function App() {
   return (
     <div className="w-screen">
       <Header />
-      <Outlet context={{items} satisfies AppContext} />
+      <Outlet context={{items, cart, setCart} satisfies AppContext} />
     </div>
   );
 }

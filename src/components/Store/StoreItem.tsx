@@ -1,15 +1,16 @@
 import {useEffect, useState} from 'react';
 import {Item} from '../../data/types';
-
+import {Link} from 'react-router-dom';
+import {AddToCartButton} from '../common/AddToCartButton';
 interface StoreItemProps {
   item: Item;
 }
 
 export function StoreItem({item}: StoreItemProps) {
-  const [img, setImg] = useState('');
+  const [img, setImg] = useState('../src/assets/images/loading.png');
 
   const fetchImage = async () => {
-    console.log('trying to fetch');
+    console.log('trying to fetch image');
     const res = await fetch(item.image, {mode: 'cors'});
     const imageBlob = await res.blob();
     const imageObjectUrl = URL.createObjectURL(imageBlob);
@@ -21,14 +22,21 @@ export function StoreItem({item}: StoreItemProps) {
   }, []);
 
   return (
-    <div className="flex flex-col rounded-md bg-slate-50 p-8 shadow-sm md:flex-row">
-      <div className="flex aspect-square min-h-60 w-60 items-center justify-center rounded-3xl bg-white">
-        <img src={img} alt="" className="h-auto max-w-32" />
-      </div>
-      <div className="p-2">
-        <div className="font-heading font-bold">{item.title}</div>
-        <div className="">{item.price}$</div>
-        <div className="">{item.category}</div>
+    <div className="flex flex-col rounded-md bg-slate-50 p-4 shadow-sm md:flex-row">
+      <Link to={'/store/' + item.id}>
+        <div className="flex h-full min-h-40 min-w-40 items-center justify-center rounded-3xl bg-white p-2 transition-transform hover:scale-105">
+          <img src={img} alt="" className="h-auto max-w-20" />
+        </div>
+      </Link>
+      <div className="relative flex w-full flex-col p-2 pb-14">
+        <div className="font-heading flex-1 text-base font-bold">
+          {item.title}
+        </div>
+        <div className="font-body">{item.price}$</div>
+        <div className="font-body font-light text-gray-500">
+          {item.category}
+        </div>
+        <AddToCartButton item={item} />
       </div>
     </div>
   );
