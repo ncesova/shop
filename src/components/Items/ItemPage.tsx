@@ -17,7 +17,7 @@ export function ItemPage() {
     },
   });
   const {itemId} = useParams();
-  const [img, setImg] = useState('../src/assets/images/loading.png');
+  const [img, setImg] = useState('/public/static/images/loading.png');
 
   const fetchImage = async (url: string) => {
     const res = await fetch(url, {mode: 'cors'});

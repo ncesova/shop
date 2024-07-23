@@ -12,7 +12,7 @@ export function LandingPage() {
         className="rounded-2xl bg-slate-700 p-6 font-body font-extrabold tracking-widest text-white">
         SHOP NOW
       </Link>
-      <img src="../src/assets/images/Sneaker.jpeg" className="mt-24" />
+      <img src={'/public/static/images/Sneaker.jpeg'} className="mt-24" />
     </div>
   );
 }
