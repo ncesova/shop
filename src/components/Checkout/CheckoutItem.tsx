@@ -2,16 +2,17 @@ import {useEffect, useState} from 'react';
 import {CartItem, Item} from '../../data/types';
 import {Link} from 'react-router-dom';
 import {AddToCartButton} from '../common/AddToCartButton';
+import imgSrc from '/public/loading.png';
 
 export function CheckoutItem({cartItem}: {cartItem: CartItem}) {
-  const [img, setImg] = useState('../src/assets/images/loading.png');
+  const [img, setImg] = useState(imgSrc);
   const [item, setItem] = useState<Item>({
     id: 0,
     title: 'Loading... ',
     price: 99.99,
     description: 'Loading... Loading... Loading... Loading... ',
     category: 'Loading...',
-    image: '../src/assets/images/loading.png',
+    image: imgSrc,
     rating: {
       rate: 0.0,
       count: 999,

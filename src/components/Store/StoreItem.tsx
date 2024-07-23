@@ -2,12 +2,13 @@ import {useEffect, useState} from 'react';
 import {Item} from '../../data/types';
 import {Link} from 'react-router-dom';
 import {AddToCartButton} from '../common/AddToCartButton';
+import imgSrc from '/public/loading.png';
 interface StoreItemProps {
   item: Item;
 }
 
 export function StoreItem({item}: StoreItemProps) {
-  const [img, setImg] = useState('/public/loading.png');
+  const [img, setImg] = useState(imgSrc);
 
   const fetchImage = async () => {
     console.log('trying to fetch image');

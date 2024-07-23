@@ -1,4 +1,5 @@
 import {Link} from 'react-router-dom';
+import img from '/public/Sneaker.jpeg';
 
 export function LandingPage() {
   return (
@@ -12,7 +13,7 @@ export function LandingPage() {
         className="rounded-2xl bg-slate-700 p-6 font-body font-extrabold tracking-widest text-white">
         SHOP NOW
       </Link>
-      <img src={'/public/Sneaker.jpeg'} className="mt-24" />
+      <img src={img} className="mt-24" />
     </div>
   );
 }

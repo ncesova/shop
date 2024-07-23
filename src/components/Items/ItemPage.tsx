@@ -2,6 +2,7 @@ import {useParams} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import {Item} from '../../data/types';
 import {AddToCartButton} from '../common/AddToCartButton';
+import imgSrc from '/public/loading.png';
 
 export function ItemPage() {
   const [item, setItem] = useState<Item>({
@@ -10,14 +11,14 @@ export function ItemPage() {
     price: 99.99,
     description: 'Loading... Loading... Loading... Loading... ',
     category: 'Loading...',
-    image: '/public/loading.png',
+    image: imgSrc,
     rating: {
       rate: 0.0,
       count: 999,
     },
   });
   const {itemId} = useParams();
-  const [img, setImg] = useState('/public/loading.png');
+  const [img, setImg] = useState(imgSrc);
 
   const fetchImage = async (url: string) => {
     const res = await fetch(url, {mode: 'cors'});
