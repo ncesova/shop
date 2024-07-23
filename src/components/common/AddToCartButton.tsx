@@ -17,6 +17,7 @@ export function AddToCartButton({item}: {item: Item}) {
     newCart[indexOfItem] = {
       id: item.id,
       quantity: newCart[indexOfItem].quantity + 1,
+      price: item.price,
     };
     setCart(newCart);
   }
@@ -30,6 +31,7 @@ export function AddToCartButton({item}: {item: Item}) {
       newCart[indexOfItem] = {
         id: item.id,
         quantity: newCart[indexOfItem].quantity - 1,
+        price: item.price,
       };
     } else {
       newCart.splice(indexOfItem, 1);
@@ -53,7 +55,11 @@ export function AddToCartButton({item}: {item: Item}) {
           onClick={() => {
             if (isNotAdded()) {
               const newCart = [...cart];
-              newCart.push({id: item.id, quantity: 1} as CartItem);
+              newCart.push({
+                id: item.id,
+                quantity: 1,
+                price: item.price,
+              } as CartItem);
               setCart(newCart);
             } else {
               addQuantity;
