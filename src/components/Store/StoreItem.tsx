@@ -7,7 +7,7 @@ interface StoreItemProps {
 }
 
 export function StoreItem({item}: StoreItemProps) {
-  const [img, setImg] = useState('/public/static/images/loading.png');
+  const [img, setImg] = useState('/public/loading.png');
 
   const fetchImage = async () => {
     console.log('trying to fetch image');

@@ -10,14 +10,14 @@ export function ItemPage() {
     price: 99.99,
     description: 'Loading... Loading... Loading... Loading... ',
     category: 'Loading...',
-    image: '../src/assets/images/loading.png',
+    image: '/public/loading.png',
     rating: {
       rate: 0.0,
       count: 999,
     },
   });
   const {itemId} = useParams();
-  const [img, setImg] = useState('/public/static/images/loading.png');
+  const [img, setImg] = useState('/public/loading.png');
 
   const fetchImage = async (url: string) => {
     const res = await fetch(url, {mode: 'cors'});
