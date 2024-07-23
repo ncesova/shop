@@ -49,7 +49,7 @@ export function AddToCartButton({item}: {item: Item}) {
     <>
       {isNotAdded() ? (
         <button
-          className="absolute bottom-0 h-10 w-full rounded-md bg-slate-200 p-2 font-body"
+          className="h-full min-h-10 w-full rounded-md bg-slate-200 p-2 font-body"
           onClick={() => {
             if (isNotAdded()) {
               const newCart = [...cart];
@@ -62,15 +62,15 @@ export function AddToCartButton({item}: {item: Item}) {
           Buy
         </button>
       ) : (
-        <div className="absolute bottom-0 grid h-10 w-full grid-cols-3 items-center rounded-md bg-slate-200 font-body">
-          <button className="font-body text-lg" onClick={subtractQuantity}>
-            -
+        <div className="grid h-full min-h-10 w-full grid-cols-3 items-center rounded-md bg-slate-200 font-body">
+          <button className="font-body text-lg" onClick={addQuantity}>
+            +
           </button>
           <div className="flex items-center justify-center text-lg">
             {getQuantity()}
           </div>
-          <button className="font-body text-lg" onClick={addQuantity}>
-            +
+          <button className="font-body text-lg" onClick={subtractQuantity}>
+            -
           </button>
         </div>
       )}

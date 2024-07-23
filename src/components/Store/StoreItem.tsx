@@ -28,7 +28,7 @@ export function StoreItem({item}: StoreItemProps) {
           <img src={img} alt="" className="h-auto max-w-20" />
         </div>
       </Link>
-      <div className="relative flex w-full flex-col p-2 pb-12">
+      <div className="relative flex w-full flex-col p-2">
         <div className="font-body font-light text-gray-500">
           {item.category}
         </div>
@@ -37,8 +37,12 @@ export function StoreItem({item}: StoreItemProps) {
         </div>
         <div className="font-body text-lg">Price: {item.price}$</div>
 
-        <div className="font-body text-sm">Rating: {item.rating.rate}/5</div>
-        <AddToCartButton item={item} />
+        <div className="mb-2 font-body text-sm">
+          Rating: {item.rating.rate}/5
+        </div>
+        <div className="h-10">
+          <AddToCartButton item={item} />
+        </div>
       </div>
     </div>
   );
