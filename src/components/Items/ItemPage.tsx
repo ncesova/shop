@@ -1,5 +1,4 @@
 import {useParams} from 'react-router-dom';
-import {useItems} from '../../App';
 import {useEffect, useState} from 'react';
 import {Item} from '../../data/types';
 import {AddToCartButton} from '../common/AddToCartButton';
@@ -27,7 +26,7 @@ export function ItemPage() {
     setImg(imageObjectUrl);
   };
 
-  const fetchProduct = async (id: string) => {
+  const fetchProduct = async () => {
     fetch(`https://fakestoreapi.com/products/${itemId}`, {mode: 'cors'})
       .then((res) => res.json())
       .then((json) => {
@@ -37,7 +36,7 @@ export function ItemPage() {
   };
 
   useEffect(() => {
-    fetchProduct(itemId!);
+    fetchProduct();
   }, [itemId]);
 
   return (

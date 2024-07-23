@@ -1,6 +1,5 @@
-import {useOutletContext} from 'react-router-dom';
 import {useItems} from '../../App';
-import {CartItem, Item, Items} from '../../data/types';
+import {CartItem, Item} from '../../data/types';
 
 export function AddToCartButton({item}: {item: Item}) {
   const {cart, setCart} = useItems();

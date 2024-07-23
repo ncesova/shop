@@ -1,9 +1,8 @@
-import {useOutletContext} from 'react-router-dom';
 import {useItems} from '../../App';
 import {CheckoutItem} from './CheckoutItem';
 
 export function CheckoutPage() {
-  const {cart, setCart} = useItems();
+  const {cart} = useItems();
   console.log(cart);
   let total = 0;
   cart.forEach((item) => {

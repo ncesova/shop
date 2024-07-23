@@ -1,7 +1,7 @@
 import {Outlet, useOutletContext} from 'react-router-dom';
 import {Header} from './components/Header/Header';
-import {useEffect, useState} from 'react';
-import {CartItem, Items} from './data/types';
+import {useState} from 'react';
+import {CartItem} from './data/types';
 
 type AppContext = {
   cart: CartItem[];

@@ -1,8 +1,7 @@
-import {useItems} from '../../App';
 import Select from 'react-select';
 import {StoreItem} from './StoreItem';
 import {Item, Items} from '../../data/types';
-import {useEffect, useMemo, useReducer, useState} from 'react';
+import {useEffect, useMemo, useState} from 'react';
 
 type Option = {
   value: string;
