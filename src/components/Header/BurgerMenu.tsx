@@ -1,5 +1,3 @@
-import {slide as Menu} from 'react-burger-menu';
-import {NavLink} from './NavLink';
 import {Link} from 'react-router-dom';
 import {ShoppingCartIcon} from '@heroicons/react/24/outline';
 
