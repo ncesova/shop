@@ -50,7 +50,7 @@ export function BurgerMenu() {
   return (
     <div className="md:hidden">
       <Menu right styles={styles}>
-        <ul className="font-heading flex h-16 w-full flex-row items-center gap-16 text-xl font-medium">
+        <ul className="flex h-16 w-full flex-row items-center gap-16 font-heading text-xl font-medium">
           <NavLink>
             <Link to={'/home'}>— Home</Link>
           </NavLink>
