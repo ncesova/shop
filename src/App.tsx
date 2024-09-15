@@ -13,7 +13,7 @@ export function App() {
   const [cart, setCart] = useState<CartItem[]>([]);
   const location = useLocation();
   return (
-    <div className="App">
+    <div className="App bg-white">
       <Header />
       <AnimatePresence key={location.key}>
         <Outlet context={{cart, setCart} satisfies AppContext} />
