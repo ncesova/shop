@@ -1,10 +1,11 @@
-import {useParams} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import {useEffect, useState} from 'react';
 import {Item} from '../../data/types';
 import {AddToCartButton} from '../common/AddToCartButton';
 import imgSrc from '/public/loading.png';
 import {routeVariants} from '../../App';
 import {motion} from 'framer-motion';
+import {ArrowLeftIcon} from '@heroicons/react/24/outline';
 
 export function ItemPage() {
   const [item, setItem] = useState<Item>({
@@ -50,6 +51,11 @@ export function ItemPage() {
       exit="initial"
       transition={{type: 'tween'}}
       className="h-full w-full p-6 md:p-12">
+      <div className="flex px-1 pb-2">
+        <Link to="/store">
+          <ArrowLeftIcon className="h-10 w-10" />
+        </Link>
+      </div>
       <div className="relative flex flex-col rounded bg-slate-100 p-3 pb-4 md:flex-row md:p-4">
         <div className="flex aspect-square h-full min-h-80 min-w-60 items-center justify-center rounded-3xl bg-white p-2">
           <img src={img} alt="" className="h-auto max-h-80 max-w-[80%]" />
