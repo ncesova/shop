@@ -3,6 +3,8 @@ import {useEffect, useState} from 'react';
 import {Item} from '../../data/types';
 import {AddToCartButton} from '../common/AddToCartButton';
 import imgSrc from '/public/loading.png';
+import {routeVariants} from '../../App';
+import {motion} from 'framer-motion';
 
 export function ItemPage() {
   const [item, setItem] = useState<Item>({
@@ -41,7 +43,11 @@ export function ItemPage() {
   }, [itemId]);
 
   return (
-    <div className="h-full w-full p-6 md:p-12">
+    <motion.div
+      variants={routeVariants}
+      initial="initial"
+      animate="final"
+      className="h-full w-full p-6 md:p-12">
       <div className="relative flex flex-col rounded bg-slate-100 p-3 pb-4 md:flex-row md:p-4">
         <div className="flex aspect-square h-full min-h-80 min-w-60 items-center justify-center rounded-3xl bg-white p-2">
           <img src={img} alt="" className="h-auto max-h-80 max-w-[80%]" />
@@ -63,6 +69,6 @@ export function ItemPage() {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

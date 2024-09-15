@@ -1,4 +1,5 @@
-import {useItems} from '../../App';
+import {motion} from 'framer-motion';
+import {routeVariants, useItems} from '../../App';
 import {CheckoutItem} from './CheckoutItem';
 
 export function CheckoutPage() {
@@ -9,7 +10,11 @@ export function CheckoutPage() {
     total += item.price * item.quantity;
   });
   return (
-    <div className="flex flex-col">
+    <motion.div
+      variants={routeVariants}
+      initial="initial"
+      animate="final"
+      className="flex flex-col">
       <div className="m-4 flex flex-row items-center justify-around rounded-lg bg-slate-200 p-2 font-body text-lg font-semibold md:p-4">
         <span>TOTAL: {total}$</span>
         <button
@@ -25,6 +30,6 @@ export function CheckoutPage() {
           </div>
         );
       })}
-    </div>
+    </motion.div>
   );
 }

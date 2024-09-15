@@ -2,6 +2,8 @@ import Select from 'react-select';
 import {StoreItem} from './StoreItem';
 import {Item, Items} from '../../data/types';
 import {useEffect, useMemo, useState} from 'react';
+import {motion} from 'framer-motion';
+import {routeVariants} from '../../App';
 
 type Option = {
   value: string;
@@ -60,7 +62,11 @@ export function StorePage(this: any) {
   ];
 
   return (
-    <div className="StorePage">
+    <motion.div
+      variants={routeVariants}
+      initial="initial"
+      animate="final"
+      className="StorePage">
       <div className="flex w-full items-center gap-4 px-8 py-2">
         <span>Sort by</span>
         <Select
@@ -83,6 +89,6 @@ export function StorePage(this: any) {
           return <StoreItem key={item.id} item={item} />;
         })}
       </div>
-    </div>
+    </motion.div>
   );
 }
