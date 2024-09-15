@@ -1,5 +1,9 @@
+import {Link} from 'react-router-dom';
+
 export function Logo() {
   return (
-    <span className="font-heading text-center text-3xl font-black">Store</span>
+    <Link className="text-center font-heading text-3xl font-black" to={'/'}>
+      Store
+    </Link>
   );
 }
