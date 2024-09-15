@@ -9,6 +9,8 @@ export function LandingPage() {
       variants={routeVariants}
       initial="initial"
       animate="final"
+      exit="initial"
+      transition={{type: 'tween'}}
       className="mt-20 flex h-max w-full flex-col items-center justify-center gap-6 p-4">
       <span className="font-heading text-3xl font-bold">Welcome to Store</span>
       <span className="font-body text-xl text-slate-500">

@@ -14,6 +14,8 @@ export function CheckoutPage() {
       variants={routeVariants}
       initial="initial"
       animate="final"
+      exit="initial"
+      transition={{type: 'tween'}}
       className="flex flex-col">
       <div className="m-4 flex flex-row items-center justify-around rounded-lg bg-slate-200 p-2 font-body text-lg font-semibold md:p-4">
         <span>TOTAL: {total}$</span>

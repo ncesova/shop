@@ -29,8 +29,10 @@ export function useItems() {
 export const routeVariants = {
   initial: {
     opacity: 0,
+    x: '100%',
   },
   final: {
     opacity: 1,
+    x: 0,
   },
 };

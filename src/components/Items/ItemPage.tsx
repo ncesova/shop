@@ -47,6 +47,8 @@ export function ItemPage() {
       variants={routeVariants}
       initial="initial"
       animate="final"
+      exit="initial"
+      transition={{type: 'tween'}}
       className="h-full w-full p-6 md:p-12">
       <div className="relative flex flex-col rounded bg-slate-100 p-3 pb-4 md:flex-row md:p-4">
         <div className="flex aspect-square h-full min-h-80 min-w-60 items-center justify-center rounded-3xl bg-white p-2">

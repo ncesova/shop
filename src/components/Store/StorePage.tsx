@@ -66,6 +66,8 @@ export function StorePage(this: any) {
       variants={routeVariants}
       initial="initial"
       animate="final"
+      exit="initial"
+      transition={{type: 'tween'}}
       className="StorePage">
       <div className="flex w-full items-center gap-4 px-8 py-2">
         <span>Sort by</span>
